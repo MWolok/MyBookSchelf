@@ -1,20 +1,22 @@
-package com.myBookSchelf.BookSchelf.model;
+package com.myBookSchelf.BookSchelf.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.myBookSchelf.BookSchelf.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.myBookSchelf.BookSchelf.repository.UserModelRepository;
 
 import java.util.List;
 
 @RestController
 public class UserService {
-    @Autowired
     UserModelRepository userModelRepository;
-    @Autowired
-    ObjectMapper objectMapper;
-
+    public UserService(UserModelRepository userModelRepository) {
+        this.userModelRepository = userModelRepository;
+    }
+//to refactor new way
 @PostMapping(path = "/register")
     public ResponseEntity registerUser(@RequestBody UserModel userModel){
         List<UserModel> userDB = userModelRepository.findByName(userModel.getName());

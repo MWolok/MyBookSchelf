@@ -1,6 +1,7 @@
 package com.myBookSchelf.BookSchelf.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 import org.hibernate.validator.constraints.URL;
 
@@ -21,5 +22,6 @@ public class UserModel {
 @NonNull
     private  String password;
 @NonNull
+@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}")
     private String email;
 }
