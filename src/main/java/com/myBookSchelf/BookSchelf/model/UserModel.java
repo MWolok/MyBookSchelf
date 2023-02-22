@@ -5,7 +5,11 @@ import jakarta.validation.constraints.Email;
 import lombok.*;
 import org.hibernate.validator.constraints.URL;
 
-@Builder
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -16,6 +20,7 @@ import org.hibernate.validator.constraints.URL;
 public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private int id;
 @NonNull
     private String name;
@@ -24,4 +29,7 @@ public class UserModel {
 @NonNull
 @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}")
     private String email;
+
+@OneToMany(mappedBy = "userModel", cascade = CascadeType.ALL, orphanRemoval = true)
+private Set<Book> books = new HashSet<>();
 }
