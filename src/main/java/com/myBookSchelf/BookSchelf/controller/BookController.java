@@ -4,6 +4,7 @@ import com.myBookSchelf.BookSchelf.dto.BookDto;
 import com.myBookSchelf.BookSchelf.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ public class BookController {
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
+//    @PreAuthorize("hasRole('USER')")
     @PostMapping
     public ResponseEntity<BookDto> createBook(@RequestBody BookDto bookDto){
         List<BookDto> found = bookService.getBookBytitle(bookDto);

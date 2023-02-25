@@ -20,12 +20,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @Column(name = "user_id")
     private int id;
-@NonNull
+
     private String name;
+@Column(nullable = false, unique = true)
+private String username;
 @NonNull
     private  String password;
 @Column(nullable = false, unique = true)
-@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}")
+//@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}")
     private String email;
 
 

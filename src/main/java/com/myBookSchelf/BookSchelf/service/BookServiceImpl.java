@@ -23,13 +23,9 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public BookDto createBook(BookDto bookDto) {
-//        Book book = new Book();
-//        book.setAuthor(bookDto.getAuthor());
-//        book.setTitle(bookDto.getTitle());
+
     Book newBook = bookRepository.save(DtoToEntity(bookDto));
-// BookDto bookResponse = new BookDto();
-// bookResponse.setAuthor(newBook.getAuthor());
-// bookResponse.setTitle(newBook.getTitle());
+
         return maptoDto(newBook);
     }
 

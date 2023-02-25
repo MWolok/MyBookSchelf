@@ -1,9 +1,9 @@
 package com.myBookSchelf.BookSchelf.service;
 
-import com.myBookSchelf.BookSchelf.dto.UserDto;
+import com.myBookSchelf.BookSchelf.dto.UserRegisterDto;
 
 import java.util.List;
 
 public interface UserService {
-    List<UserDto> getAllUsers();
+    List<UserRegisterDto> getAllUsers();
 }

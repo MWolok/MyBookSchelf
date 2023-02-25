@@ -1,6 +1,6 @@
 package com.myBookSchelf.BookSchelf.service;
 
-import com.myBookSchelf.BookSchelf.dto.UserDto;
+import com.myBookSchelf.BookSchelf.dto.UserRegisterDto;
 import com.myBookSchelf.BookSchelf.model.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -18,17 +18,17 @@ private UserRepository userRepository;
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
     }
-    private UserDto userToDto(User user){
-        UserDto dto = modelMapper.map(user, UserDto.class);
+    private UserRegisterDto userToDto(User user){
+        UserRegisterDto dto = modelMapper.map(user, UserRegisterDto.class);
         return dto;
     }
-    private User dtoToUser(UserDto userDto){
-        User user = modelMapper.map(userDto, User.class);
+    private User dtoToUser(UserRegisterDto userRegisterDto){
+        User user = modelMapper.map(userRegisterDto, User.class);
         return user;
     }
 
     @Override
-    public List<UserDto> getAllUsers() {
+    public List<UserRegisterDto> getAllUsers() {
       List<User> listUsers=  userRepository.findAll();
      return listUsers.stream().map(user->userToDto(user)).collect(Collectors.toList());
     }
