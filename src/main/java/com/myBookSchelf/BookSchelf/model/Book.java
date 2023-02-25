@@ -2,8 +2,6 @@ package com.myBookSchelf.BookSchelf.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
-
 
 
 @AllArgsConstructor
@@ -24,5 +22,5 @@ public class Book {
     private  String author;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private UserModel userModel;
+    private User user;
 }

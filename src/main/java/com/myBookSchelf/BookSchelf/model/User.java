@@ -3,10 +3,8 @@ package com.myBookSchelf.BookSchelf.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
-import org.hibernate.validator.constraints.URL;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -17,7 +15,7 @@ import java.util.Set;
 @ToString
 @Entity
 @Table(name = "users")
-public class UserModel {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @Column(name = "user_id")
@@ -39,8 +37,7 @@ inverseJoinColumns = @JoinColumn (name = "role_id", referencedColumnName = "id")
 private Set<Role> roles;
 
 
-
-@OneToMany(mappedBy = "userModel", cascade = CascadeType.ALL, orphanRemoval = true)
+@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Book> books = new HashSet<>();
 
 }
