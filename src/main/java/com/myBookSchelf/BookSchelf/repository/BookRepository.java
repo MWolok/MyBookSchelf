@@ -10,5 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book,Long> {
-  List<Book> findByTitle(String title) ;
+  List<Book> findByUserId(long userid) ;
+  Boolean existsByTitle(String title);
+  Boolean existsByUserId(long id);
 }
