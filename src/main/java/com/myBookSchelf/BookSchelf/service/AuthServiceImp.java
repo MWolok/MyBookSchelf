@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -26,26 +27,34 @@ public class AuthServiceImp implements AuthoService{
     private RoleRepository repository;
     private PasswordEncoder passwordEncoder;
     private ModelMapper modelMapper;
+    private  RoleRepository roleRepository;
 
 //    public AuthServiceImp(AuthenticationManager authenticationManager) {
 //        this.authenticationManager = authenticationManager;
 //    }
 
 
-    public AuthServiceImp(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository repository, PasswordEncoder passwordEncoder, ModelMapper modelMapper) {
+    public AuthServiceImp(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository repository, PasswordEncoder passwordEncoder, ModelMapper modelMapper,RoleRepository roleRepository) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
         this.modelMapper = modelMapper;
+        this.roleRepository =roleRepository;
     }
 
     @Override
-    public String login(LoginDto loginDto) {
+    public Optional<Long> login(LoginDto loginDto) {
       Authentication authentication =  authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getUsernameOrEmail(), loginDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return "User Logged-in";
+     Optional<User> usr= userRepository.findByUsernameOrEmail(loginDto.getUsernameOrEmail(),loginDto.getUsernameOrEmail());
+        return  usr.map(user -> user.getId());
+    }
+
+    @Override
+    public String userRole(long id) {
+    return   null;
     }
 
     @Override

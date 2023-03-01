@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 //@RequestMapping("/api/book")
 public class BookController {
     private BookService bookService;
@@ -19,7 +20,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @PreAuthorize("hasRole('USER')")
+//    @PreAuthorize("hasRole('USER')")
     @PostMapping("/api/{userId}/books")
     public ResponseEntity<BookDto> createBook(@PathVariable(value = "userId") long userId,@RequestBody BookDto bookDto){
 
